@@ -1,161 +1,133 @@
-# Legal Case Management System
+# NyayaSetu - AI-Powered Legal Assistant & Court Simulation
 
-A comprehensive legal case management system featuring AI-powered document analysis and appointment scheduling, built with FastAPI and React.
+## 🏛️ Project Overview
 
-## Features
+NyayaSetu is an innovative AI-powered legal assistance platform that democratizes access to legal knowledge and provides an interactive court simulation environment. Built with cutting-edge AI technologies, it serves both legal professionals and citizens seeking legal guidance.
 
-### Document Summarizer
-- Upload and analyze legal documents (PDF, TXT)
-- AI-powered summarization using Google's Gemini API
-- Extract key points and important information
-- Clean and intuitive user interface
+## ⚖️ Key Features
 
-### AI Appointment Booking
-- Intelligent scheduling with AI assistance
-- Real-time availability checking
-- Appointment management (create, view, cancel)
-- Email notifications (optional)
+### For Lawyers:
+- **AI Court Simulation** - Practice cases with AI judge and opponent
+- **Client Management** - Handle client requests and case tracking
+- **Document Analysis** - AI-powered legal document summarization
+- **Voice Interface** - Natural conversation with AI legal assistant
+- **Case Preparation** - Interactive legal debate practice
 
-### Core Technologies
-- **Backend**: FastAPI, Python 3.9+
-- **Frontend**: React, TypeScript, Tailwind CSS
-- **AI**: Google Gemini API
-- **Database**: PostgreSQL
-- **Deployment**: Docker, Nginx
+### For Citizens:
+- **Legal Guidance** - 24/7 AI-powered legal assistance
+- **Document Summarizer** - Understand complex legal documents
+- **Multilingual Support** - Legal help in multiple languages
+- **Voice Interface** - Speak naturally with AI legal assistant
+- **Rights Education** - Learn about legal rights and procedures
 
-## Getting Started
+## 🚀 Technology Stack
 
-### Prerequisites
-- Docker and Docker Compose
-- Node.js 18+ and npm
-- Python 3.9+
-- Google Gemini API key
+### Backend:
+- **FastAPI** - High-performance web framework
+- **Google Gemini 2.0 Flash** - Advanced language model
+- **Whisper** - Speech recognition
+- **ElevenLabs** - Voice synthesis
+- **Qdrant** - Vector database for legal knowledge
+- **LlamaIndex** - RAG implementation
+- **SQLite** - Database
 
-### Local Development
+### Frontend:
+- **React + TypeScript** - Modern UI framework
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **Lucide React** - Icons
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd Law_full
-   ```
+## 🛠️ Installation & Setup
 
-2. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
+### Prerequisites:
+- Python 3.8+
+- Node.js 16+
+- Git
 
-3. Start the development environment:
-   ```bash
-   # Start backend
-   cd backend
-   pip install -r requirements.txt
-   uvicorn app:app --reload
-
-   # In a new terminal, start frontend
-   cd frontend
-   npm install
-   npm run dev
-   ```
-
-### Production Deployment
-
-1. Build and start containers:
-   ```bash
-   docker-compose up --build -d
-   ```
-
-2. Run database migrations (if any):
-   ```bash
-   docker-compose exec backend alembic upgrade head
-   ```
-
-3. Access the application:
-   - Frontend: http://localhost
-   - Backend API: http://localhost/api
-   - API Documentation: http://localhost/api/docs
-
-## API Endpoints
-
-### Document Summarizer
-- `POST /api/summarize/text` - Summarize text content
-- `POST /api/summarize/file` - Summarize uploaded file
-- `GET /api/summarize/history` - Get summarization history
-
-### Appointment Booking
-- `POST /api/appointments/suggest` - Get suggested time slots
-- `POST /api/appointments/book` - Book an appointment
-- `GET /api/appointments` - List user's appointments
-- `DELETE /api/appointments/{appointment_id}` - Cancel an appointment
-
-## Project Structure
-
-```
-.
-├── backend/                 # FastAPI application
-│   ├── app.py              # Main application
-│   ├── requirements.txt     # Python dependencies
-│   ├── routers/            # API routes
-│   ├── services/           # Business logic
-│   └── models/             # Database models
-│
-├── frontend/               # React application
-│   ├── public/             # Static files
-│   ├── src/                # Source code
-│   │   ├── components/     # Reusable components
-│   │   ├── pages/          # Page components
-│   │   └── App.tsx         # Main component
-│   └── package.json        # Node.js dependencies
-│
-├── nginx/                  # Nginx configuration
-├── docker-compose.yml      # Docker Compose configuration
-└── .env.example           # Example environment variables
+### Backend Setup:
+```bash
+cd backend
+pip install -r requirements.txt
+python -m uvicorn app:app --reload
 ```
 
-## Configuration
+### Frontend Setup:
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-### Environment Variables
+### Environment Variables:
+Create a `.env` file in the backend directory:
+```env
+GOOGLE_API_KEY=your_google_api_key
+QDRANT_API_KEY=your_qdrant_api_key
+ELEVENLABS_API_KEY=your_elevenlabs_api_key
+```
 
-#### Backend
-- `GEMINI_API_KEY`: Google Gemini API key (required)
-- `DATABASE_URL`: PostgreSQL connection URL
-- `SECRET_KEY`: Secret key for JWT tokens
+## 🎯 AI Court Features
 
-#### Frontend
-- `VITE_API_URL`: Base URL for API requests
+### Virtual Courtroom:
+- **AI Judge Simulation** - Realistic judge behavior and rulings
+- **AI Lawyer Opponent** - Challenging legal arguments
+- **Real-time Debates** - Interactive legal discussions
+- **Voice Interaction** - Natural speech-based communication
+- **Case Management** - Track practice sessions and progress
 
-## Usage
+### Legal AI Assistant:
+- **24/7 Availability** - Round-the-clock legal guidance
+- **Multilingual Support** - Multiple language assistance
+- **Document Processing** - Legal document analysis
+- **Rights Education** - Legal knowledge dissemination
 
-1. **Document Summarizer**:
-   - Navigate to the dashboard
-   - Upload a document or paste text
-   - View the generated summary and key points
+## 🌍 Social Impact
 
-2. **Appointment Booking**:
-   - Go to the appointments section
-   - Select your preferred date and time
-   - Confirm your appointment details
-   - Receive confirmation and reminders
-   - Retrieve relevant legal precedents
-   - Generate AI lawyer responses
-   - Evaluate judge interventions when necessary
+### Addressing Social Justice:
+- **Democratizing Legal Access** - Making legal help available to all
+- **Reducing Bias** - Consistent, objective legal guidance
+- **Supporting Marginalized Groups** - Breaking down barriers to justice
+- **Legal Literacy** - Empowering citizens with legal knowledge
 
-## Technical Details
+### Innovation in Legal Tech:
+- **AI-Powered Education** - Revolutionizing legal training
+- **Accessibility** - Voice interface for diverse users
+- **Cost Reduction** - Affordable legal assistance
+- **Geographic Reach** - Serving remote areas
 
-- **Document Processing**: Uses LlamaIndex with BAAI/bge-large-en-v1.5 embeddings
-- **Vector Storage**: Qdrant for efficient semantic search
-- **Multi-Agent System**: Separate prompts and logic for AI Lawyer and AI Judge
-- **Memory Management**: Maintains debate context across turns
-- **Source Attribution**: Preserves metadata from legal documents
+## 📊 Technical Architecture
 
-## Contributing
+### AI Integration:
+- **RAG (Retrieval-Augmented Generation)** - Accurate legal responses
+- **Multi-modal AI** - Text, voice, and document processing
+- **Real-time Processing** - Low-latency AI interactions
+- **Contextual Understanding** - Legal domain expertise
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
+### Scalability:
+- **Cloud-Ready** - Easy deployment to cloud platforms
+- **Microservices** - Independent component scaling
+- **API-First** - Mobile app and third-party integration ready
+- **Database Flexibility** - Support for various database systems
 
-## License
+## 🤝 Contributing
 
-MIT
+We welcome contributions to improve NyayaSetu! Please read our contributing guidelines and submit pull requests.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Google AI for Gemini models
+- OpenAI for Whisper speech recognition
+- ElevenLabs for voice synthesis
+- The open-source community for various libraries and tools
+
+## 📞 Contact
+
+For questions or support, please reach out to the development team.
+
+---
+
+**NyayaSetu - Bridging the gap between citizens and justice through AI innovation.** ⚖️🤖
