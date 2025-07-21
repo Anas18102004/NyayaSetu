@@ -15,3 +15,5 @@ pydantic
 httpx
 faster-whisper
 torch
+langchain_google_vertexai
+langid

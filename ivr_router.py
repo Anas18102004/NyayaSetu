@@ -1,9 +1,10 @@
+
 from fastapi import APIRouter, Request, File, UploadFile
 from fastapi.responses import Response, JSONResponse
 from twilio.twiml.voice_response import VoiceResponse, Gather
 from twilio.rest import Client
 from gemini_chain import GeminiChain
-from utils import detect_human_request
+from utils import detect_human_request, translate_text
 import os
 from tts import synthesize_speech
 import time
@@ -17,16 +18,16 @@ router = APIRouter()
 
 config = load_config()
 print("Config loaded:", config)
-NGROK_BASE_URL = config.get("NGROK_BASE_URL") or "https://b6f547fcb.ngrok-free.app"  # Fallback to current URL
+NGROK_BASE_URL = config.get("NGROK_BASE_URL") or "https://1642928f320c.ngrok-free.app"  # Fallback to current URL
 print("Using NGROK_BASE_URL:", NGROK_BASE_URL)
 
 # --- Call Trigger Endpoint ---
 @router.post("/make_call")
 def make_call():
     # Load Twilio credentials from env
-    account_sid = "ACadb02d62c972112ccaa441965c90bba4"
-    auth_token = "86328b151daddc915eb39ea15e2dd815"
-    from_number = "+17867861066"  # Your Twilio number
+    account_sid = "AC8a6352f9e3fcf415ed8fb67258bfb7a5"
+    auth_token = "71f7fc6289a5f8ca160080ab382f0962"
+    from_number = "+12622052416"  # Your Twilio number
     to_number = "+916351478230"      # Your real phone number
 
     client = Client(account_sid, auth_token)
@@ -121,6 +122,10 @@ async def process_input(request: Request):
         gemini_result = gemini.ask(transcript, history=conversation_history[session_id])
         response_text = gemini_result["response"]
 
+        # Translate to Hindi if needed
+        if language == "hi-IN":
+            response_text = translate_text(response_text, "hi")
+
         # Add agent response to history
         conversation_history[session_id].append((now, "agent", response_text))
 
@@ -176,6 +181,9 @@ async def process_input(request: Request):
             gemini = GeminiChain(session_id)
             gemini_result = gemini.ask(transcript, history=history)
             response_text = gemini_result["response"]
+            # Translate to Hindi if needed
+            if language == "hi-IN":
+                response_text = translate_text(response_text, "hi")
             # Add agent response to history
             conversation_history[session_id].append((now, "agent", response_text))
 
@@ -207,6 +215,10 @@ async def process_input(request: Request):
         gemini = GeminiChain(session_id)
         gemini_result = gemini.ask(transcript, history=conversation_history[session_id])
         response_text = gemini_result["response"]
+
+        # Translate to Hindi if needed
+        if language == "hi-IN":
+            response_text = translate_text(response_text, "hi")
 
         # Add agent response to history
         conversation_history[session_id].append((now, "agent", response_text))
